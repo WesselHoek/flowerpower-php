@@ -30,28 +30,11 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
                 <a href="index.php" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">About</a>
-                <a href="#" class="nav-item nav-link">Products</a>
-                <a href="contact.php" class="nav-item nav-link">Contact</a>
+                <a href="loginCustomer.php" class="nav-item nav-link">login klant</a>
+                <a href="loginEmployee.php" class="nav-item nav-link">login medewerker</a>
+                <a href="registreren.php" class="nav-item nav-link">registreren</a>
+                <a href="logout.php" class="nav-item nav-link">logout</a>
             </div>
-            <form class="form-inline ml-auto">
-                <div class="navbar-nav">
-                    <!-- if the $_SESSION["email"] variable is set then echo the logout link in the nav and the admin page link or user page link-->
-                    <?php 
-                    if(isset($_SESSION["email"])){
-                        echo '<a href="logout.php" class="nav-item nav-link">Logout</a>';
-                        if($role == "Admin"){
-                            echo '<a href="loginEmployee.php" class="nav-item nav-link">'.$_SESSION["email"].'</a>';
-                        }else{
-                            echo '<a href="loginCustomer.php" class="nav-item nav-link">'.$_SESSION["email"].'</a>';
-                        }   
-                    }else{
-                        // if the user is not logged in echo the login page link inside the nav
-                        echo '<a href="loginEmployee.php" class="nav-item nav-link">Login</a>';
-                    }
-                    ?>
-                </div>
-            </form>
         </div>
     </nav>
 </div>
