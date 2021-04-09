@@ -19,7 +19,7 @@ function __construct() {
 
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        echo"connected successfully";
+        //echo"connected successfully";
     }   catch(PDOException $e) {
         echo "connection failed" . $e->getMessage();
     }         
@@ -40,6 +40,7 @@ function __construct() {
             'gebruikersnaam'=> $uname,
             'wachtwoord'=>password_hash($psw, PASSWORD_DEFAULT)
         ]);
+        header('location: logincustomer.php');
 }
 //Deze functie zorgt voor het inloggen van de medewerker
     public function loginmedewerker($uname, $psw){
@@ -66,6 +67,7 @@ function __construct() {
                     session_start();
                     $_SESSION['medewerkerscode'] = $result['id'];
                     $_SESSION['uname'] = $result['gebruikersnaam'];
+                    $_SESSION['logged_in'] = true;
     
                     header('location: medewerkers.php');
     
@@ -95,7 +97,7 @@ function __construct() {
         ]);
     }
     //Deze functie zorgt voor het inloggen van de klant
-    public function loginklant ($uname, $psw){
+    public function loginklant($uname, $psw){
 
         $sql = "SELECT klantcode, gebruikersnaam, wachtwoord FROM klant WHERE gebruikersnaam = :gebruikersnaam";
     
@@ -109,20 +111,18 @@ function __construct() {
         
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         print_r($result);
+        echo "psw is $psw en". $result['wachtwoord'];
     
-        if(is_array($result)){
+        if(is_array($result) && count($result) > 0){
+            
+            if ($uname == $result['gebruikersnaam'] && password_verify($psw, $result['wachtwoord'])) {
+                session_start();
+                $_SESSION['klantcode'] = $result['klantcode'];
+                $_SESSION['uname'] = $result['gebruikersnaam'];
+                $_SESSION['logged_in'] = true;
+                header('location: klanten.php');
     
-            if(count($result) > 0){
-    
-                if ($uname == $result['gebruikersnaam'] && password_verify($psw, $result['wachtwoord'])) {
-    
-                    session_start();
-                    $_SESSION['klantcode'] = $result['id'];
-                    $_SESSION['uname'] = $result['gebruikersnaam'];
-    
-                    header('location: klanten.php');
-    
-                }
+                
             }else{
                 echo 'Failed to login.';
             }
@@ -132,6 +132,7 @@ function __construct() {
         }
     
     }
+
     //bij deze functie kan je een klant inserten om te testen met die klant
     function insertklant(){
         $sql="INSERT INTO klant (klantcode, voorletters, tussenvoegsel, achternaam, adres, postcode, woonplaats, geboortedatum, gebruikersnaam, wachtwoord) VALUES (:klantcode, :voorletters, :tussenvoegsel, :achternaam, :adres, :postcode, :woonplaats, :geboortedatum, :gebruikersnaam, :wachtwoord)";

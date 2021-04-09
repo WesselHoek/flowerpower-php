@@ -1,12 +1,11 @@
 <?php
-    // start the session
-    session_start();
 
     // $title contains the title for the page
     $title = "Home";
     
     // this inserts the header and the navbar
-    require_once('header.php');  
+    require_once('header.php');
+    require_once('footer.php');  
 ?>
 
 <body>

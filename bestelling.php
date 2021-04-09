@@ -6,27 +6,22 @@
     </head>
     <body>
 
-        <?php
-        session_start();
-        $_SESSION['uname'];
-        print_r($_SESSION);
+        <?php 
         
-        require_once('header.php'); 
-        require_once('footer.php');
+        require_once('header.php');
+        require_once('footer.php'); 
         
-
         include 'database.php';
-
         $db = new database();
-        $klant = $db->select("SELECT * FROM klant WHERE klantcode = :code;", ['code'=>$_SESSION['klantcode']]);
-        // print_r($klant);
+        $artikelen = $db->select("SELECT * FROM artikel", []);
 
-        $columns = array_keys($klant[0]);
-        $row_data = array_values($klant);
+        $columns = array_keys($artikelen[0]);
+        $row_data = array_values($artikelen)
         
         
 
         ?>
+        <button type="button"><a href="klanten.php">terug</a></button>
         <table>
             <tr>
                 <?php
@@ -44,7 +39,7 @@
                     }
                     ?>
                     <td>
-                    <a href="edit_klanten.php?klant_klantcode=<?php echo $rows['klantcode']?>">edit</a>
+                    <a href="edit_artikel.php?artikel_artikelcode=<?php echo $rows['artikelcode']?>">bestel</a>
                     </td>
                     </tr>
                     

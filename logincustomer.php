@@ -6,11 +6,10 @@ $title = "Login";
 // include the database class
 include "database.php";
 
-// start the session
-session_start();
 
 require_once('header.php');
-// this inserts the header and the navbar
+require_once('footer.php');
+// this inserts the header and the navbar and inserts the footer
 
     //$database = new database();
     //$database->insertklant();
@@ -53,7 +52,7 @@ require_once('header.php');
 	<body class="text-center" cz-shortcut-listen="true">
 
         <div class="col-3 ruimte">
-            <form class="form-signin" action="loginCustomer.php" method="post">
+            <form class="form-signin" action="logincustomer.php" method="post">
             <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
 
                 <label for="text" >Gebruikersnaam</label>

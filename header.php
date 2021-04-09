@@ -30,10 +30,15 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
                 <a href="index.php" class="nav-item nav-link active">Home</a>
-                <a href="loginCustomer.php" class="nav-item nav-link">login klant</a>
-                <a href="loginEmployee.php" class="nav-item nav-link">login medewerker</a>
-                <a href="registreren.php" class="nav-item nav-link">registreren</a>
-                <a href="logout.php" class="nav-item nav-link">logout</a>
+                <a href="loginCustomer.php" class="nav-item nav-link">Login klant</a>
+                <a href="loginEmployee.php" class="nav-item nav-link">Login medewerker</a>
+                <a href="registreren.php" class="nav-item nav-link">Registreren</a>
+                <a href="contact.php" class="nav-item nav-link">Contact</a>
+                <?php
+                    session_start();
+                    if(isset($_SESSION) && $_SESSION['logged_in']){ ?>
+                    <a href="logout.php" class="float-right nav-item nav-link">Logout</a>
+                <?php } ?>
             </div>
         </div>
     </nav>

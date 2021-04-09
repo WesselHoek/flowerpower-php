@@ -6,11 +6,10 @@ $title = "Login";
 // include the database class
 include "database.php";
 
-// start the session
-session_start();
 
 require_once('header.php');
-// this inserts the header and the navbar
+require_once('footer.php');
+// this inserts the header and the navbar and inserts the footer
 
     //$database = new database();
     //$database->insert_admin();

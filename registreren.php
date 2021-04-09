@@ -6,11 +6,10 @@ $title = "Login";
 // include the database class
 include "database.php";
 
-// start the session
-session_start();
 
 require_once('header.php');
-// this inserts the header and the navbar
+require_once('footer.php');
+// this inserts the header and the navbar and inserts the footer
 
     //$database = new database();
     //$database->insertklant();
@@ -56,6 +55,7 @@ require_once('header.php');
 		<meta charset="utf-8">
 		<title>Login</title>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <link rel="stylesheet" href="style.css">
 	</head>
 	<body class="text-center" cz-shortcut-listen="true">
 
@@ -96,11 +96,10 @@ require_once('header.php');
                 <br>
 
                 <label for="wachtwoord">Wachtwoord</label>
-                <input type="Password" name="pword" class="form-control" placeholder="Wachtwoord" required="" autocomplete="off">
+                <input type="password" name="pword" class="form-control" placeholder="Wachtwoord" required="" autocomplete="off">
                 <br>
                 
-                <input type="submit" name="submit" class="btn btn-lg btn-success btn-block" value="submit">
-
+                <input type="submit" name="submit" class="btn btn-lg btn-secondary btn-block" value="submit">
             </form>
         </div>
     </div>
